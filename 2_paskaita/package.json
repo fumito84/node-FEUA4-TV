@@ -1,5 +1,5 @@
 {
-    "title": "My second Node.js task",
+    "title": "My second Node.js task - backend + frongtend",
     "version": "1.0",
     "scripts": {
         "start": "node index.js"
