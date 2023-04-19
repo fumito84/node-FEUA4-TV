@@ -33,13 +33,19 @@ app.get('/colors', (req, res) => {
 }); //profesionalus variantas 
 
 
-app.get('/places', (req, res) => {
-    const randomPlaces = [];
-    
-    randomPlaces[i] = Math.floor(Math.random() *5) + 1;
-
-    res.send(randomPlaces);
-})
+app.get('/randomPlaces', (req, res) => {
+    const places = [];
+    const numPlaces = Math.floor(Math.random() *5) + 1;
+    for (let i = 0; i < numPlaces; i++){
+        const place = {
+            country: casual.country,
+            city: casual.city,
+            address: `${casual.street}, ${casual.address2}`,
+        };
+        places.push(place);
+    }
+    res.send(places);
+});
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
