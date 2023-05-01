@@ -2,10 +2,12 @@
     "title": "4 paskaita 2 pratimas: dinaminiai linkai",
     "version": "0.1",
     "scripts": {
-      "start": "node index.js"
+        "start": "node index.js"
     },
     "dependencies": {
-      "cors": "^2.8.5",
-      "express": "^4.18.2"
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "nodemon": "^2.0.22",
+        "slugify": "^1.6.6"
     }
-  }
+}
