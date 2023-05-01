@@ -19,6 +19,7 @@ const users = ["labas naujas tekstas"];
 
 app.get("/", (req, res) => {
   res.send(users);
+  // res.send([{ id: 3, name: "Tomas" }]);
 });
 
 app.post("/", (req, res) => {
