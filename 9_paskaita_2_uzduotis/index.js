@@ -25,12 +25,12 @@ app.use(cors());
 const client = new MongoClient(URI); // MongoDB instance
 
 // async funkcija, kad galėtume naudoti await prisijungiat prie DB
-app.get('/knygos', async (req, res) => {
+app.get('/products', async (req, res) => {
   try {
     const con = await client.connect(); // prisijungiame prie duomenų bazės
     const data = await con
       .db('MongoDuomenuBaze')
-      .collection('Knygos')
+      .collection('Products')
       .find()
       .toArray(); // išsitraukiame duomenis iš duomenų bazęs
     await con.close(); // uždarom prisijungimą prie duomenų bazės
@@ -41,13 +41,13 @@ app.get('/knygos', async (req, res) => {
   }
 });
 
-app.get('/knygos/:id', async (req, res) => {
+app.get('/products/:id', async (req, res) => {
   try {
     const { id } = req.params; // is objekto itraukia duomenis pagal id
     const con = await client.connect(); // prisijungiame prie duomenų bazės
     const data = await con
       .db('MongoDuomenuBaze')
-      .collection('Knygos')
+      .collection('Products')
       .findOne(new ObjectId(id)); // suranda viena objekta duomenu bazeje
     await con.close(); // uždarom prisijungimą prie duomenų bazės
     res.send(data);
@@ -57,14 +57,14 @@ app.get('/knygos/:id', async (req, res) => {
   }
 });
 
-app.get('/knygos/genre/:title', async (req, res) => {
+app.get('/products/category/:type', async (req, res) => {
   try {
-    const { title } = req.params; // is objekto itraukia duomenis pagal id
+    const { type } = req.params; // is objekto itraukia duomenis pagal id
     const con = await client.connect(); // prisijungiame prie duomenų bazės
     const data = await con
       .db('MongoDuomenuBaze')
-      .collection('Knygos')
-      .findOne({ genre: title }); // istraukia duomenis is duombazes pagal tam tikra lauka -genre-
+      .collection('Products')
+      .findOne({ category: type }); // istrauks duomenis is duombazes pagal lauka -genre-
     await con.close(); // uždarom prisijungimą prie duomenų bazės
     res.send(data);
   } catch (error) {
@@ -76,14 +76,14 @@ app.get('/knygos/genre/:title', async (req, res) => {
 // asc - ascending - didėjimo tvarka
 // dsc - descending - mažėjimo tvarka
 
-app.get('/knygos/ratingSort/:type', async (req, res) => {
+app.get('/products/priceSort/:type', async (req, res) => {
   try {
     const { type } = req.params;
     const sort = type === 'asc' ? 1 : -1;
     const con = await client.connect();
     const data = await con
       .db('MongoDuomenuBaze')
-      .collection('Knygos')
+      .collection('Products')
       .find()
       .sort({ rating: sort }) // sortina didėjimo/mažėjimo tvarka
       .toArray();
@@ -94,36 +94,14 @@ app.get('/knygos/ratingSort/:type', async (req, res) => {
   }
 });
 
-app.post('/knygos', async (req, res) => {
+app.post('/products', async (req, res) => {
   try {
-    const books = req.body;
+    const product = req.body;
     const con = await client.connect();
     const data = await con
       .db('MongoDuomenuBaze')
-      .collection('Knygos')
-      .insertOne(books); // prideda vieną objektą
-    await con.close();
-    res.send(data);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-app.post('/knygos', async (req, res) => {
-  try {
-    const con = await client.connect();
-    const data = await con
-      .db('MongoDuomenuBaze')
-      .collection('Knygos')
-      .insertOne({
-        title: 'SVETIMAS',
-        author: 'Ridley Scott',
-        genre: 'Detektyvas',
-        publicationYear: 1979,
-        rating: 7,
-        price: 15.99,
-        description: 'Cia butu knygos aprasymas',
-      }); // prideda vieną objektą
+      .collection('Products')
+      .insertOne(product); // prideda vieną objektą
     await con.close();
     res.send(data);
   } catch (error) {
