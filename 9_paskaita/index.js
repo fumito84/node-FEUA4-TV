@@ -10,7 +10,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 require('dotenv').config();
 
 const port = process.env.PORT || 8080;
@@ -41,7 +41,60 @@ app.get('/movies', async (req, res) => {
   }
 });
 
-app.post('/', async (req, res) => {
+app.get('/movies/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // is objekto itraukia duomenis pagal id
+    const con = await client.connect(); // prisijungiame prie duomenų bazės
+    const data = await con
+      .db('MongoDuomenuBaze')
+      .collection('Movies')
+      .findOne(new ObjectId(id)); // suranda viena objekta duomenu bazeje
+    await con.close(); // uždarom prisijungimą prie duomenų bazės
+    res.send(data);
+  } catch (error) {
+    // 500 statusas - internal server error - serveris neapdorojo arba nežino kas per klaida
+    res.status(500).send(error);
+  }
+});
+
+app.get('/movies/genre/:title', async (req, res) => {
+  try {
+    const { title } = req.params; // is objekto itraukia duomenis pagal id
+    const con = await client.connect(); // prisijungiame prie duomenų bazės
+    const data = await con
+      .db('MongoDuomenuBaze')
+      .collection('Movies')
+      .findOne({ genre: title }); // istraukia duomenis is duomenu bazes pagal tam tikra lauka, kaip -genre-
+    await con.close(); // uždarom prisijungimą prie duomenų bazės
+    res.send(data);
+  } catch (error) {
+    // 500 statusas - internal server error - serveris neapdorojo arba nežino kas per klaida
+    res.status(500).send(error);
+  }
+});
+
+// asc - ascending - didėjimo tvarka
+// dsc - descending - mažėjimo tvarka
+
+app.get('/movies/ratingSort/:type', async (req, res) => {
+  try {
+    const { type } = req.params;
+    const sort = type === 'asc' ? 1 : -1;
+    const con = await client.connect();
+    const data = await con
+      .db('MongoDuomenuBaze')
+      .collection('Movies')
+      .find()
+      .sort({ rating: sort }) // sortina didėjimo/mažėjimo tvarka
+      .toArray();
+    await con.close();
+    res.send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.post('/movies', async (req, res) => {
   try {
     const movie = req.body;
     const con = await client.connect();
