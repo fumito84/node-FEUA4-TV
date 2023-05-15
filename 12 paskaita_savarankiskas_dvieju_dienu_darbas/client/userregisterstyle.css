@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(215, 217, 231);
+}
+/* Header */
+header{
+    text-align: center;
+    padding: 1rem 0 ;
+    background-color: white;
+}
+.navbar, .navbar a{
+    font-weight: bold;
+    text-decoration: none;
+}
+.member{
+    color: grey;
+    margin-right: 100px;
+}
+.user{
+    color: blue;
+}
+.member:hover, .user:hover{
+    text-decoration: underline;
+}
+/* Main */
+main{
+    padding: 40px;
+    height: 85%;
+}
+span{
+    color: red;
+}
+.createUser{
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(142, 140, 140);
+    margin-top: 1rem;
+    padding: 1rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr); 
+}
+.container{
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: start;
+}
+.surname{
+    grid-column: 2;
+    grid-row: 1;
+}
+.buttons{
+    grid-column: span 2;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+label{
+    display: block;
+    width: 140px;
+    text-align: left;
+    margin: 1rem 0 5px 0;
+}
+.inputText, #select{
+    width: 700px;
+    padding: 10px;
+    display: block;
+}
+#cancel, #newUser{
+    cursor: pointer;
+    border: none;
+}
+#cancel{
+    background: none;
+    font-weight: bold;
+    font-size: 1rem;
+    /* margin-right: 100px; */
+}
+#newUser{
+    background-color: rgb(107, 107, 239);
+    color: white;
+    padding: 10px 2rem;
+    border-radius: 5px;
+}
+#cancel:hover{
+    color: white;
+    background-color: rgb(92, 84, 84);
+    padding: 10px 2rem;
+    border-radius: 5px;
+}
+#newUser:hover{
+    color: white;
+    background-color: rgb(92, 84, 84);
+}
+/* Footer */
+footer{
+    text-align: center;
+    background-color: rgb(211, 217, 231);
+    padding: 1rem;
+}

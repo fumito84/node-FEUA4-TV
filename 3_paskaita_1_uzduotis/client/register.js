@@ -14,22 +14,22 @@ form.addEventListener("submit", (e) => {
     const city = document.querySelector("#city").value;
     const phone = document.querySelector("#phone").value;
     const isAgreemnet = document.querySelector("#agreement").checked;
-    
+
     fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          password,
-          email,
-          firstname,
-          surname,
-          address,
-          postcode,
-          city,
-          phone,
-          isAgreemnet,
-        }),
-      })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        password,
+        email,
+        firstname,
+        surname,
+        address,
+        postcode,
+        city,
+        phone,
+        isAgreemnet,
+      }),
+    })
       .then(() => {
         window.open("index.html", "_blank"); // atidaro naujam tabe index.html puslapi
       })
@@ -39,4 +39,3 @@ form.addEventListener("submit", (e) => {
     alert("Nesutampa slaptadzodis, suveskite is naujo!");
   }
 });
-       

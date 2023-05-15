@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(215, 217, 231);
+}
+/* Header */
+header{
+    text-align: center;
+    padding: 1rem 0 ;
+    background-color: white;
+}
+.navbar, .navbar a{
+    font-weight: bold;
+    text-decoration: none;
+}
+.member{
+    color: grey;
+    margin-right: 100px;
+}
+.user{
+    color: blue;
+}
+.member:hover, .user:hover{
+    text-decoration: underline;
+}
