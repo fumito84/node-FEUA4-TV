@@ -4,50 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="userregisterstyle.css">
-    <title>User Register</title>
+    <title>Create User</title>
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <a class="member" href="">Membership</a>
-            <a class="user" href="">Users</a>
-        </nav>
+        <a id="firstBtn" href="">Memberships</a>
+        <a id="secondBtn" href="">Users</a>
     </header>
+
     <main>
-        <div class="topInformation">
-            <h1>Creat User</h1>
-        </div>
-        <div class="createUser">
-            <div class=".container">
-                <label for="">First Name <span>*</span></label>
-                <input type="text" id="firsName" placeholder="First Name">
-                <label for="">Email Address <span>*</span></label>
-                <input type="email" id="email" placeholder="Email Address">
-                <label for="">Change Membership</label>
-                <select id="membershipManagment">
-                    <option value="">--Select One--</option>
-                        <option value="645d157ecfae2df780d37e81">Trial</option>
-                        <option value="645d16cccfae2df780d37e82">Silver</option>
-                        <option value="645d1744cfae2df780d37e83">Bronze</option>
-                        <option value="645d1775cfae2df780d37e84">Gold</option>
-                        <option value="645d179fcfae2df780d37e85">Platinum</option>
-                </select>
+        <h2>Create User</h2>
+        <div class="createUserCard">
+            <div class="conteiner">
+                <label for="name">First Name<span>*</span></label>
+                <input class="inputText" type="text" name="" id="name" placeholder="First Name" required><br>
+
+                <label for="email">Email Address<span>*</span></label>
+                <input class="inputText" type="email" name="" id="email" placeholder="Email Address" required><br>
+
+                <label  for="select">Change Membership</label>
+                <select id="select">
+                    <option value="">Choose one...</option>
+                </select><br>
             </div>
             <div class="surname">
-                    <label for="">Last name <span>*</span></label>
-                    <input type="text" id="lastName" placeholder="Last Name">
+                <label for="surname">Last Name<span>*</span></label>
+                <input class="inputText" type="text" name="" id="surname" placeholder="Last Name" required>
             </div>
             <div class="buttons">
-                    <button id="cancel">Cancel</button>
-                    <button id="newUser">New User</button>
+                <button id="cancelBtn">Cancel</button>
+                <button id="newUserBtn">New User</button> 
             </div>
+            
         </div>
+        
     </main>
+
     <footer>
-        <h3>Copyright &copy; 2021 Membership Manager</h3>
+        Copyright &copy2023 Membership Manager
     </footer>
+
     <script src="userregister.js"></script>
 </body>
 </html>

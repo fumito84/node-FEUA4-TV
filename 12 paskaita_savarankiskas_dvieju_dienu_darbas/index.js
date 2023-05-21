@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
-
 require('dotenv').config();
 
 const port = process.env.PORT || 8080;
@@ -14,10 +13,10 @@ app.use(cors());
 
 const client = new MongoClient(URI);
 
-app.get('/membership', async (req, res) => {
+app.get('/memberships', async (req, res) => {
   try {
     const con = await client.connect();
-    const data = await con.db(dbName).collection('Services').find().toArray();
+    const data = await con.db(dbName).collection('services').find().toArray();
     await con.close();
     res.send(data);
   } catch (error) {
@@ -25,10 +24,10 @@ app.get('/membership', async (req, res) => {
   }
 });
 
-app.post('/membership', async (req, res) => {
+app.post('/memberships', async (req, res) => {
   try {
     const con = await client.connect();
-    const data = await con.db(dbName).collection('Services').insertOne({
+    const data = await con.db(dbName).collection('services').insertOne({
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
@@ -40,13 +39,13 @@ app.post('/membership', async (req, res) => {
   }
 });
 
-app.delete('/membership/:id', async (req, res) => {
+app.delete('/memberships/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const con = await client.connect();
     const data = await con
       .db(dbName)
-      .collection('Services')
+      .collection('services')
       .deleteOne({ _id: new ObjectId(id) });
     await con.close();
     res.send(data);
@@ -55,14 +54,14 @@ app.delete('/membership/:id', async (req, res) => {
   }
 });
 
-app.get('/usersm/:order', async (req, res) => {
+app.get('/users/:order', async (req, res) => {
   try {
     const { order } = req.params;
     const sort = order === 'asc' ? 1 : -1;
     const con = await client.connect();
     const data = await con
       .db(dbName)
-      .collection('UsersM')
+      .collection('users')
       .find()
       .sort({ name: sort })
       .toArray();
@@ -73,15 +72,15 @@ app.get('/usersm/:order', async (req, res) => {
   }
 });
 
-app.post('/usersm', async (req, res) => {
+app.post('/users', async (req, res) => {
   try {
     const con = await client.connect();
-    const data = await con.db(dbName).collection('UsersM').insertOne({
+    const data = await con.db(dbName).collection('users').insertOne({
       name: req.body.name,
       surname: req.body.surname,
       email: req.body.email,
       ip: req.body.ip,
-      service_id: req.body.service_Id,
+      service_id: req.body.service_id,
     });
     await con.close();
     res.send(data);
@@ -90,10 +89,10 @@ app.post('/usersm', async (req, res) => {
   }
 });
 
-app.get('/usersm', async (req, res) => {
+app.get('/users', async (req, res) => {
   try {
     const con = await client.connect();
-    const data = await con.db(dbName).collection('UsersM').find().toArray();
+    const data = await con.db(dbName).collection('users').find().toArray();
     await con.close();
     res.send(data);
   } catch (error) {
@@ -104,7 +103,7 @@ app.get('/usersm', async (req, res) => {
 app.get('/services', async (req, res) => {
   try {
     const con = await client.connect();
-    const data = await con.db(dbName).collection('Services').find().toArray();
+    const data = await con.db(dbName).collection('services').find().toArray();
     await con.close();
     res.send(data);
   } catch (error) {
@@ -112,6 +111,6 @@ app.get('/services', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on the ${port}`);
-});
+app.listen(port, () =>
+  console.log(`Server is running on the http://localhost:${port}/`),
+);

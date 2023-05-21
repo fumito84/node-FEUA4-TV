@@ -1,47 +1,47 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-use-before-define */
-/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-undef */
+/* eslint-disable implicit-arrow-linebreak */
 const randomNum = Math.floor(Math.random() * 100) + 10;
 const randomNum2 = Math.floor(Math.random() * 100) + 10;
 const randomNum3 = Math.floor(Math.random() * 100) + 10;
 const randomNum4 = Math.floor(Math.random() * 100) + 10;
 const randomIP = `${randomNum}.${randomNum2}.${randomNum3}.${randomNum4}`;
 
-document.querySelector('.member').addEventListener('click', () => {
-  window.open('./membershipManagement.html');
-});
+document
+  .querySelector('#firstBtn')
+  .addEventListener('click', () => window.open('../membershipManagement.html'));
 
-document.querySelector('.user').addEventListener('click', () => {
-  window.open('./usersmanagement.html');
-});
+document
+  .querySelector('#secondBtn')
+  .addEventListener('click', () => window.open('../usersManagement.html'));
 
-const cancel = document.querySelector('#cancel');
-const newUser = document.querySelector('#newUser');
+const cancelBtn = document.querySelector('#cancelBtn');
+const newUserBtn = document.querySelector('#newUserBtn');
 
-newUser.addEventListener('click', () => {
-  const nameField = document.querySelector('#firstName').value;
-  const surnameField = document.querySelector('#lastName').value;
+newUserBtn.addEventListener('click', () => {
+  const nameField = document.querySelector('#name').value;
+  const surnameField = document.querySelector('#surname').value;
   const email = document.querySelector('#email').value;
 
   const membership = document.querySelector('select').value;
 
-  fetch('http://localhost:3000/usersm', {
+  fetch('http://localhost:3000/users', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: nameField,
       surname: surnameField,
-      // eslint-disable-next-line object-shorthand
       email: email,
       ip: randomIP,
       service_id: membership,
     }),
   })
-    .then(() => window.close('./createMembership.html'))
+    .then(() => window.close('../createMembership.html'))
     .catch((err) => console.error(err));
 });
 
-const select = document.querySelector('#membershipManagment');
+const select = document.querySelector('#select');
 fetch('http://localhost:3000/memberships')
   .then((res) => res.json())
   .then((data) => showInfo(data))
@@ -56,7 +56,7 @@ const showInfo = (info) => {
   });
 };
 
-cancel.addEventListener('click', () => {
+cancelBtn.addEventListener('click', () => {
   window.location.reload();
-  window.close('./createMembership.html');
+  window.close('../create_membership/index.html');
 });

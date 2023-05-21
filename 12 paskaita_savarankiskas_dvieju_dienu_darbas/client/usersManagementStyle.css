@@ -6,35 +6,33 @@
 body{
     width: 100vw;
     height: 100vh;
-    /* background-color: rgb(215, 217, 231); */
 }
 /* Header */
 header{
     text-align: center;
     margin: 1rem 0 ;
-    background-color: white;
 }
-.navbar, .navbar a {
+#firstBtn, #secondBtn{
     font-weight: bold;
     text-decoration: none;
 }
-.member{
+#firstBtn{
     color: grey;
     margin-right: 100px;
 }
-.user{
+#secondBtn{
     color: blue;
 }
-.member:hover, .user:hover{
+#firstBtn:hover, #secondBtn:hover{
     text-decoration: underline;
 }
 /* Main */
 main{
     background-color: rgb(211, 217, 231);
-    padding: 50px 150px;
+    padding: 30px 60px;
     height: 100%;
 }
-.topInformation{
+.title{
     display: flex;
     justify-content: space-between;
 }
@@ -45,24 +43,17 @@ main{
     background-color: rgb(107, 107, 239);
     text-decoration: none;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 2rem;
     border-radius: 5px;
-    text-justify: center;
 }
 #newUser:hover{
     background-color: rgb(0, 0, 0);
-    color: white;
+    color: red;
 }
 #sortByName{
-    padding: 10px 3px;
+    padding: 5px 0;
     cursor: pointer;
-    border-radius: 10px;
-    background-color: rgb(208, 208, 240);
 }
-
-/* Footer */
-footer{
-    text-align: center;
-    background-color: rgb(211, 217, 231);
-    padding: 1rem;
+.blue{
+    color: blue;
 }

@@ -1,18 +1,20 @@
+/* eslint-disable no-shadow */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
-document.querySelector('.member').addEventListener('click', () => {
-  window.open('./membershipManagement.html');
-});
+document
+  .querySelector('#firstBtn')
+  .addEventListener('click', () => window.open('../membershipManagement.html'));
 
-document.querySelector('.user').addEventListener('click', () => {
-  window.open('./usersManagement.html');
-});
+document
+  .querySelector('#secondBtn')
+  .addEventListener('click', () => window.open('../usersManagement.html'));
 
-document.querySelector('#newUser').addEventListener('click', () => {
-  window.open('./userregister.html');
-});
+document
+  .querySelector('#newUser')
+  .addEventListener('click', () => window.open('../userregister.html'));
 
-fetch('http://localhost:3000/usersm')
+fetch('http://localhost:3000/users')
   .then((res) => res.json())
   .then((data) => showInfo(data))
   .catch((err) => console.error(err));
@@ -23,10 +25,10 @@ const showInfo = (info) => {
   info.forEach((data) => {
     const userCard = document.createElement('div');
     Object.assign(userCard.style, {
-      width: '250px',
+      width: '300px',
       height: '150px',
       backgroundColor: 'white',
-      borderRadius: '3px',
+      borderRadius: '2px',
       boxShadow: '0 0 10px rgb(142, 140, 140)',
       margin: '1rem 1rem 0 0',
       display: 'inline-block',
@@ -44,11 +46,11 @@ const showInfo = (info) => {
 
     const email = document.createElement('div');
     email.style.padding = '7px 0 0 10px';
-    email.textContent = `Email address: ${data.email}`;
+    email.innerHTML = `Email address: <span class="blue">${data.email}</span>`;
 
     const membership = document.createElement('div');
     membership.style.padding = '7px 0 0 10px';
-    membership.textContent = `Membership: ${data.service_id}`;
+    membership.innerHTML = `Membership: <span class="blue">${data.service_id}</span>`;
 
     const ip = document.createElement('div');
     ip.style.padding = '7px 0 0 10px';
@@ -59,15 +61,13 @@ const showInfo = (info) => {
   });
   const sorting = document.querySelector('select');
   sorting.addEventListener('change', () => {
-    // eslint-disable-next-line no-shadow
     const container = document.querySelector('.container');
     container.textContent = '';
-    fetch(`http://localhost:3000/usersm/${sorting.value}`)
+    fetch(`http://localhost:3000/users/${sorting.value}`)
       .then((res) => res.json())
       .then((data) => sortingUsers(data))
       .catch((err) => console.error(err));
 
-    // eslint-disable-next-line no-shadow
     const sortingUsers = (info) => {
       info.forEach((data) => {
         const userCard = document.createElement('div');
@@ -91,10 +91,10 @@ const showInfo = (info) => {
         nameAndSurname.textContent = `${data.name} ${data.surname}`;
         const email = document.createElement('div');
         email.style.padding = '7px 0 0 10px';
-        email.textContent = `Email address: ${data.email}`;
+        email.innerHTML = `Email address: <span class="blue">${data.email}</span>`;
         const membership = document.createElement('div');
         membership.style.padding = '7px 0 0 10px';
-        membership.textContent = `Membership: ${data.service_id}`;
+        membership.innerHTML = `Membership: <span class="blue">${data.service_id}</span>`;
         const ip = document.createElement('div');
         ip.style.padding = '7px 0 0 10px';
         ip.textContent = `IP: ${data.ip}`;

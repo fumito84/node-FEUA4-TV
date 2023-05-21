@@ -1,21 +1,20 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-use-before-define */
-/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-restricted-globals */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
-document.querySelector('.member').addEventListener('click', () => {
-  window.open('./membershipManagement.html');
-});
+document
+  .querySelector('#firstBtn')
+  .addEventListener('click', () => window.open('../membershipManagement.html'));
 
-document.querySelector('.user').addEventListener('click', () => {
-  window.open('./usersManagement.html');
-});
+document
+  .querySelector('#secondBtn')
+  .addEventListener('click', () => window.open('../usersManagement.html'));
 
-document.querySelector('#newMembership').addEventListener('click', () => {
-  window.open('./createMembership.html');
-});
+document
+  .querySelector('#newMembership')
+  .addEventListener('click', () => window.open('../createMembership.html'));
 
-fetch('http://localhost:3000/membership')
+fetch('http://localhost:3000/memberships')
   .then((res) => res.json())
   .then((data) => showInfo(data))
   .catch((err) => console.error(err));
@@ -24,7 +23,7 @@ function showInfo(info) {
   info.forEach((data) => {
     const card = document.createElement('div');
     Object.assign(card.style, {
-      width: '250px',
+      width: '300px',
       height: '150px',
       backgroundColor: 'white',
       borderRadius: '2px',
@@ -77,7 +76,7 @@ function showInfo(info) {
       });
     });
     del.addEventListener('click', () => {
-      fetch(`http://localhost:3000/membership/${data._id}`, {
+      fetch(`http://localhost:3000/memberships/${data._id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),

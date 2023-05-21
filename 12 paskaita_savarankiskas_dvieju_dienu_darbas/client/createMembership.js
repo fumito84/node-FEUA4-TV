@@ -1,19 +1,19 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-undef */
-document.querySelector('.member').addEventListener('click', () => {
-  window.open('./membershipManagement.html');
-});
-document.querySelector('user').addEventListener('click', () => {
-  window.open('./userManagement.html');
-});
+document
+  .querySelector('#firstBtn')
+  .addEventListener('click', () => window.open('../membershipManagement.html'));
+document
+  .querySelector('#secondBtn')
+  .addEventListener('click', () => window.open('../usersManagement.html'));
 
-const cancel = document.querySelector('#cancel');
-const newMembership = document.querySelector('#newMembership');
+const cancelBtn = document.querySelector('#cancelBtn');
+const newMembershipBtn = document.querySelector('#newMembershipBtn');
 
-newMembership.addEventListener('click', () => {
+newMembershipBtn.addEventListener('click', () => {
   const nameField = document.querySelector('#name').value;
-  const memPrice = document.querySelector('#price').value;
-  const textArea = document.querySelector('#textBox').value;
+  const memPrice = document.querySelector('#memPrice').value;
+  const textArea = document.querySelector('#commBox').value;
 
   fetch('http://localhost:3000/memberships', {
     method: 'POST',
@@ -24,11 +24,11 @@ newMembership.addEventListener('click', () => {
       description: textArea,
     }),
   })
-    .then(() => window.close('./createMembership.html'))
+    .then(() => window.close('../createMembership.html'))
     .catch((err) => console.error(err));
 });
 
 cancelBtn.addEventListener('click', () => {
   window.location.reload();
-  window.close('./createMembership.html');
+  window.close('../createMembership.html');
 });

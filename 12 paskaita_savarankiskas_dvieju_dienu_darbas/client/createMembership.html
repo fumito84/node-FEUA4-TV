@@ -4,39 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="createMembershipStyle.css">
-    <title>Membership Register</title>
+    <title>Create Membership</title>
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <a class="member" href="">Membership</a>
-            <a class="user" href="">Users</a>
-        </nav>
+        <a id="firstBtn" href="">Memberships</a>
+        <a id="secondBtn" href="">Users</a>
     </header>
+
     <main>
-        <div class="topInformation">
-            <h2>Create Membership</h2>
-        </div>
-        <div class="createMembership">
+        <h2>Create Membership</h2>
+        <div class="createMembershipCard">
             <label for="name">Name</label>
             <input class="inputText" type="text" name="name" id="name" placeholder="Name"><br>
 
             <label for="memPrice">Membership Prices</label>
-            <input class="inputText" type="text" name="" id="price" value="$" placeholder="Membership Price"><br>
+            <input class="inputText" type="text" name="" id="memPrice" value="$" placeholder="Membership Price"><br>
 
 
-            <label class="textBox" for="textBox">Description</label>
-            <textarea class="inputText" name="area" id="textBox" cols="30" rows="10"></textarea><br>
+            <label class="textBox" for="commBox">Description</label>
+            <textarea class="inputText" name="area" id="commBox" cols="30" rows="10"></textarea><br>
 
-            <input id="cancel" type="button" value="Cancel">
-            <input id="newMembership" type="button" value="New Membership">
+            <input id="cancelBtn" type="button" value="Cancel">
+            <input id="newMembershipBtn" type="button" value="New Membership">
         </div>
     </main>
+
     <footer>
-        <h3>Copyright &copy; 2021 Membership Manager</h3>
+        Copyright &copy2023 Membership Manager
     </footer>
+
+
     <script src="createMembership.js"></script>
 </body>
 </html>
