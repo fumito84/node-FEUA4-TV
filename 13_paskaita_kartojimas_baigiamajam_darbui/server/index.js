@@ -15,7 +15,7 @@ const dbName = process.env.DB_NAME;
 console.log(port, URI, dbName);
 
 const client = new MongoClient(URI);
-const names = ['Tomas'];
+// const names = ['Tomas'];
 
 // app.get('/', (req, res) => {
 //   res.send(names);
